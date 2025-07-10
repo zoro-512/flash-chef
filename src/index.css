@@ -1,0 +1,57 @@
+*{
+    margin: 0;
+}
+
+.hT{
+    height: 100px;
+    margin: 5px;
+  background-color: white;
+  display: flex;
+  border-radius: 4px;
+  box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.10), 0px 1px 2px 0px rgba(0, 0, 0, 0.06);
+  justify-content: center;
+  align-items: center;
+}
+.hT>span{
+    margin-left: 10px;
+    font-weight: bold;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 2rem;
+}
+.hT>img{
+    width: 50px;
+    
+}
+body{
+    background-color: #FAFAF8;
+}
+main{
+    padding: 30px 30px 10px;
+}
+.add-ingredient{
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+   
+}
+.add-ingredient>input{
+    border-radius: 6px;
+    border: 1px solid #d1d5db;
+    padding: 9px 13px;
+    box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.05);
+    flex-grow: 1;
+    min-width: 150px;
+    max-width: 400px;
+}
+.add-ingredient>button{
+    border-radius: 6px;
+    background-color: black;
+    color: white;
+    font-size: 0.8rem;
+    border: none;
+    width: 200px;
+}
+.add-ingredient>button::before{
+    content: "+";
+    padding-right: 5px;
+}
