@@ -1,5 +1,7 @@
-export default function Recipe(){
-    return(
-        <h1>sknfkanfkaanfkfksnkfksnvnvgsdgsndgnsdjngjn</h1>
+export default function Recipe(props){
+    return(<>
+       {  props.recipe}
+    </>
+  
     )
 }

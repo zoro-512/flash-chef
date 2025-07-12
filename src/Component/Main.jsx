@@ -1,21 +1,24 @@
 import React from "react";
 import IngredientList from "./ingredient";
 import Recipe from "./recipe";
-import { getRecipeFromMistral } from "./ai";
+import { getRecipeFromGemini } from "./ai";
 export default function Main(){
 
     const [ingredient,setIngredient]=React.useState([])
 
 
-    const [GetRecipe,SetGetRecipe]=React.useState(false);
+    const [GetRecipe,SetGetRecipe]=React.useState("");
 
     function sub(formData){
      const newIngredient =formData.get("ingredient");
         setIngredient(p=>[...p,newIngredient]);
     }
 
-    function togle(){
-        SetGetRecipe(p=>!p)
+    async function togle(){
+        SetGetRecipe(p=>!p);
+        const result = await getRecipeFromGemini(["egg", "onion", "milk"]);
+SetGetRecipe(result);
+        
     }
 
     return(
@@ -26,7 +29,7 @@ export default function Main(){
                 <button>Add ingredient</button>
             </form>
                 <IngredientList ingredient={ingredient} togle={togle} />
-               {GetRecipe && <Recipe />}
+               {GetRecipe && <Recipe recipe={GetRecipe} />}
         </main>
     )
 }
