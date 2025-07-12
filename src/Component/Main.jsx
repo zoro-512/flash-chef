@@ -10,6 +10,14 @@ export default function Main(){
 
     const [GetRecipe,SetGetRecipe]=React.useState("");
 
+    const recipeSection=React.useRef(null);
+
+    React.useEffect(()=>{
+        if(GetRecipe !=="" && recipeSection!== null){
+            recipeSection.current.scrollIntoView({behavior:"smooth"});
+        }
+    },[GetRecipe])
+
     function sub(formData){
      const newIngredient =formData.get("ingredient");
         setIngredient(p=>[...p,newIngredient]);
@@ -30,7 +38,7 @@ export default function Main(){
                 name="ingredient" />
                 <button>Add ingredient</button>
             </form>
-                <IngredientList ingredient={ingredient} togle={togle} />
+                <IngredientList ref={recipeSection} ingredient={ingredient} togle={togle} />
                 {loading && <div className="loader">🍳 Cooking up your recipe...</div>}
                {GetRecipe && <Recipe recipe={GetRecipe} />}
         </main>
