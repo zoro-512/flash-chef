@@ -16,7 +16,7 @@ export default function Main(){
 
     async function togle(){
         SetGetRecipe(p=>!p);
-        const result = await getRecipeFromGemini(["egg", "onion", "milk"]);
+        const result = await getRecipeFromGemini(ingredient);
 SetGetRecipe(result);
         
     }
