@@ -6,6 +6,7 @@ export default function Main(){
 
     const [ingredient,setIngredient]=React.useState([])
 
+    const [loading, setLoading] = React.useState(false);
 
     const [GetRecipe,SetGetRecipe]=React.useState("");
 
@@ -14,10 +15,11 @@ export default function Main(){
         setIngredient(p=>[...p,newIngredient]);
     }
 
-    async function togle(){
-        SetGetRecipe(p=>!p);
+    async function togle(){ 
+        setLoading(true); 
         const result = await getRecipeFromGemini(ingredient);
-SetGetRecipe(result);
+        SetGetRecipe(result);
+        setLoading(false);
         
     }
 
@@ -29,6 +31,7 @@ SetGetRecipe(result);
                 <button>Add ingredient</button>
             </form>
                 <IngredientList ingredient={ingredient} togle={togle} />
+                {loading && <div className="loader">🍳 Cooking up your recipe...</div>}
                {GetRecipe && <Recipe recipe={GetRecipe} />}
         </main>
     )
