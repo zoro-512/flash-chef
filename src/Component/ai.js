@@ -1,6 +1,7 @@
 export async function getRecipeFromGemini(ingredientsArr) {
-  // const GEMINI_API_KEY = '';
-  const model = "gemini-2.0-flash"; 
+   
+  const model = "gemini-2.0-flash"; // or gemini-pro
+
 const GEMINI_API_KEY = import.meta.env.VITE_GEMINI_API_KEY;
   if (!GEMINI_API_KEY) {
     console.error("Gemini API key is missing.");

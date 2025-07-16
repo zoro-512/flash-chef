@@ -1,21 +1,19 @@
-export default function IngredientList(prop){
-    const ingredientsListItems = prop.ingredient.map(ingredient => (
-        <li key={ingredient}>{ingredient}</li>
-    ));
-
-   return ( <section>
-                {prop.ingredient.length>0 && <h2>Ingredients on hand:</h2>}
-                <ul className="ingredients-list" aria-live="polite">{ingredientsListItems}</ul>
-                {prop.ingredient.length>3 &&<div className="get-recipe-container">
-                    <div ref={prop.ref}>
-                        <h3>Ready for a recipe?</h3>
-                        <p>Generate a recipe from your list of ingredients.</p>
-                    </div >
-                    <button onClick={prop.togle}>Get a recipe</button>
-
-                </div>}
-
-
-
-            </section>)
+export default function IngredientList({ p, s }) {
+  return (
+    <section className="list-box">
+      {p.map((item, index) => (
+        <div
+          className="list"
+          key={index}
+         
+        >
+          {item} 
+          <svg onClick={() => {
+            const newList = p.filter((_, i) => i !== index);
+            s(newList); 
+          }} xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg>
+        </div>
+      ))}
+    </section>
+  );
 }
