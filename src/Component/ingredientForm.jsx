@@ -4,6 +4,8 @@ import { getRecipeFromGemini } from "./ai";
 import ReactMarkdown from 'react-markdown';
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
+import RecipeCard from "./recipeCard";
+
 
 export default function ING() {
   const [inputValue, setInputValue] = useState('');
@@ -94,7 +96,7 @@ export default function ING() {
             <Skeleton height={2} count={5} />
           </>
         ) : (
-          recipe && <ReactMarkdown>{recipe}</ReactMarkdown>
+          recipe && <RecipeCard recipe={recipe} />
         )}
       </div>)}
     </div>

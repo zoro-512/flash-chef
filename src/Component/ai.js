@@ -15,7 +15,27 @@ const GEMINI_API_KEY = import.meta.env.VITE_GEMINI_API_KEY;
   const ingredientsString = ingredientsArr.join(", ");
   const userPrompt = `I have ${ingredientsString}. Please give me a recipe you'd recommend I make!`;
 
-  const systemPrompt = `You are an assistant that receives a list of ingredients that a user has and suggests a recipe they could make with some or all of those ingredients. You don't need to use every ingredient they mention in your recipe. The recipe can include additional ingredients they didn't mention, but try not to include too many extra ingredients. Format your response in markdown to make it easier to render to a web page.`;
+ const systemPrompt = `
+You are an assistant that receives a list of ingredients a user has and suggests a recipe they can make using some or all of them.
+
+Guidelines:
+- You can include additional ingredients, but keep them minimal and common.
+- Structure the response clearly in markdown.
+- Use the following format exactly to make it easier to parse:
+
+# [Recipe Title]
+
+## Ingredients
+- List each ingredient as a bullet point
+
+## Steps
+1. Provide step-by-step instructions clearly and concisely
+
+## Optional Notes (if any)
+- You can include additional tips, substitutions, or serving suggestions here
+
+Do not include extra commentary outside the markdown structure.
+`;
 
   try {
     const response = await fetch(

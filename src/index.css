@@ -299,7 +299,6 @@ html, body {
 /* Optional: Style lists */
 .recipe-box ul,
 .recipe-box ol {
-  list-style-image: url('src/assets/chef-claude-icon.png') ;
   padding-left: 1.5rem;
   margin: 1rem 0;
 }
