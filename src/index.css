@@ -21,7 +21,7 @@
     rgba(13, 35, 64, 1) 98%); */
   background: linear-gradient(135deg, #2b0e39 0%, #25022e 20%, #1a0131 40%, #28061e 70%, #040105 100%);
   background-size: 400% 400%;
-  animation: gradientPulse 8s ease infinite;
+  animation: gradientPulse 5s ease-in-out infinite;
   /* display: flex;
   align-items: center;
   justify-content: center; */
