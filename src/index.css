@@ -1,65 +1,136 @@
+html, body {
+  overflow-x: hidden;
+  max-width: 100vw;
+}
 * {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI',
     Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue',
     sans-serif;
 }
 
-/* html, body {
-  height: auto;
-  min-height: 100%;
-} */
+:root {
+  --color-bg1: rgb(108, 0, 162);
+  --color-bg2: rgb(0, 17, 82);
+  --color1: 18, 113, 255;
+  --color2: 221, 74, 255;
+  --color3: 100, 220, 255;
+  --color4: 200, 50, 50;
+  --color5: 180, 180, 50;
+  --color-interactive: 140, 100, 255;
+  --circle-size: 80%;
+  --blending: hard-light;
+}
+
+/* === Animations === */
+@keyframes moveInCircle {
+  0% { transform: rotate(0deg); }
+  50% { transform: rotate(180deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes moveVertical {
+  0% { transform: translateY(-50%); }
+  50% { transform: translateY(50%); }
+  100% { transform: translateY(-50%); }
+}
+
+@keyframes moveHorizontal {
+  0% { transform: translateX(-50%) translateY(-10%); }
+  50% { transform: translateX(50%) translateY(10%); }
+  100% { transform: translateX(-50%) translateY(-10%); }
+}
+
+.bg1, .bg2, .bg3, .bg4, .bg5, .interactive {
+  position: absolute;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.bg1 {
+  background: radial-gradient(circle at center, rgba(var(--color1), 0.8) 0, rgba(var(--color1), 0) 50%);
+  width: var(--circle-size);
+  height: var(--circle-size);
+  top: calc(50% - var(--circle-size) / 2);
+  left: calc(50% - var(--circle-size) / 2);
+  transform-origin: center center;
+  animation: moveVertical 15s ease infinite;
+}
+
+.bg2 {
+  background: radial-gradient(circle at center, rgba(var(--color2), 0.8) 0, rgba(var(--color2), 0) 50%);
+  width: var(--circle-size);
+  height: var(--circle-size);
+  top: calc(50% - var(--circle-size) / 2);
+  left: calc(50% - var(--circle-size) / 2);
+  transform-origin: calc(50% - 400px);
+  animation: moveInCircle 20s reverse infinite;
+}
+
+.bg3 {
+  background: radial-gradient(circle at center, rgba(var(--color3), 0.8) 0, rgba(var(--color3), 0) 50%);
+  width: var(--circle-size);
+  height: var(--circle-size);
+  top: calc(50% - var(--circle-size) / 2 + 200px);
+  left: calc(50% - var(--circle-size) / 2 - 500px);
+  transform-origin: calc(50% + 400px);
+  animation: moveInCircle 25s linear infinite;
+}
+
+.bg4 {
+  background: radial-gradient(circle at center, rgba(var(--color4), 0.8) 0, rgba(var(--color4), 0) 50%);
+  width: var(--circle-size);
+  height: var(--circle-size);
+  top: calc(50% - var(--circle-size) / 2);
+  left: calc(50% - var(--circle-size) / 2);
+  transform-origin: calc(50% - 200px);
+  animation: moveHorizontal 25s ease infinite;
+  opacity: 0.7;
+}
+
+.bg5 {
+  background: radial-gradient(circle at center, rgba(var(--color5), 0.8) 0, rgba(var(--color5), 0) 50%);
+  width: calc(var(--circle-size) * 2);
+  height: calc(var(--circle-size) * 2);
+  top: calc(50% - var(--circle-size));
+  left: calc(50% - var(--circle-size));
+  transform-origin: calc(50% - 800px) calc(50% + 200px);
+  animation: moveInCircle 10s ease infinite;
+}
+
+/* Follows mouse */
+.interactive {
+  background: radial-gradient(circle at center, rgba(var(--color-interactive), 0.8) 0, rgba(var(--color-interactive), 0) 50%);
+  width: 100%;
+  height: 100%;
+  top: -50%;
+  left: -50%;
+  opacity: 0.7;
+}
 
 .r {
- /* background: linear-gradient(-45deg, #0f0c29, #310440, #1a0022, #030107); */
-/* background: radial-gradient(circle,
-    rgb(56, 23, 71) 2%,
-    rgb(30, 6, 49) 12%,
-    rgb(27, 6, 56) 28%,
-    rgba(47, 27, 48, 1) 81%,
-    rgba(13, 35, 64, 1) 98%); */
-  background: linear-gradient(135deg, #2b0e39 0%, #25022e 20%, #1a0131 40%, #28061e 70%, #040105 100%);
-  background-size: 400% 400%;
-  animation: gradientPulse 5s ease-in-out infinite;
-  /* display: flex;
-  align-items: center;
-  justify-content: center; */
-    min-height: 1000vh;
-    height: auto;
-  color: white;
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+  background: linear-gradient(40deg, var(--color-bg1), var(--color-bg2));
+  overflow-x: hidden;
+  overflow-y: auto;
+  padding-bottom: 5rem;
+  z-index: 1;
 }
 
-@keyframes gradientPulse {
-  0% {
-    background-position: 0% 50%;
-    filter: brightness(1);
-  }
-  25% {
-    background-position: 50% 50%;
-    filter: brightness(1.1);
-  }
-  50% {
-    background-position: 100% 50%;
-    filter: brightness(1.2);
-  }
-  75% {
-    background-position: 50% 50%;
-    filter: brightness(1.1);
-  }
-  100% {
-    background-position: 0% 50%;
-    filter: brightness(1);
-  }
-}
+/* === UI Components === */
 
-/* Header Title */
 .hT {
   height: 100px;
   display: flex;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   border-radius: 4px;
-  box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.10),
-              0px 1px 2px 0px rgba(0, 0, 0, 0.06);
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
+  color: #fff;
   justify-content: center;
   align-items: center;
 }
@@ -71,48 +142,51 @@
   width: 50px;
 }
 
-/* Centering utility */
 .cen {
   display: flex;
-  justify-content: center;
- flex-direction: column;
+  flex-direction: column;
   align-items: center;
+  width: 100%;
+  position: relative;
+  z-index: 1;
 }
 
-/* Glassmorphic Container */
 .ING {
   margin: 2.5vw;
   border-radius: 20px;
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(255, 255, 255, 0.18);
-  
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  height: auto;
   width: 95vw;
   max-width: 900px;
   padding: 20px;
   color: white;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  gap: 1rem;
 }
 
-/* Input and button */
 .input-box {
   display: flex;
-  margin: 10px;
   justify-content: center;
   align-items: center;
   gap: 20px;
 }
+
 .input-box > input {
   width: 400px;
-  border: 5px solid #262626e3;
+  border: 3px solid #faf8f8e3;
   padding: 10px;
+  color: #fff;
   border-radius: 40px;
-  background: #fff;
+   background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
 }
+.input-box >input::placeholder{
+  color: #fff;
+}
+
 .input-box > button {
   height: 50px;
   width: 90px;
@@ -121,18 +195,15 @@
   border: 1px solid rgba(255, 255, 255, 0.18);
   background: rgba(255, 255, 255, 0.05);
   backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
   cursor: pointer;
 }
 
-/* List items container */
 .list-box {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
 }
 
-/* Single list item */
 .list {
   padding: 8px 12px;
   background-color: #955252;
@@ -143,7 +214,6 @@
   gap: 15px;
 }
 
-/* Image header */
 .ADD-top {
   display: flex;
   justify-content: center;
@@ -162,9 +232,16 @@
   display: flex;
   flex-wrap: wrap;
   margin: 2.5vw;
-  max-height:30vh;
-   max-width: 800px;
+  max-width: 800px;
   gap: 1rem;
+  color: #fff;
+
+  /* REMOVE THESE 👇 */
+  max-height: unset;
+  overflow-y: unset;
+
+  /* Optional: reduce overall spacing */
+  justify-content: center;
 }
 
 .qkCell {
@@ -175,19 +252,59 @@
   cursor: pointer;
   box-sizing: border-box;
   text-align: center;
-  width: fit-content;
-  font-size: 2rem;
+  font-size: 1.2rem;      /* Reduced size */
+  padding: 8px 16px;      /* Reduced padding */
   border-radius: 12px;
+  flex: 1 1 40%;          /* Two-column layout on wider screens */
+  max-width: 250px;
 }
-.qkb{
-    padding: 20px;
-    border-radius: 20px;
-    border: 1px solid rgba(255, 255, 255, 0.18);
+
+.qkb {
+  padding: 20px;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
   background: rgba(131, 10, 127, 0.34);
   backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
   color: #fff;
   cursor: pointer;
-   box-sizing: border-box;
-    
+}
+
+.recipe-box {
+  min-height: 0;
+  min-width: 0;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.18); 
+   background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  color: #fff;
+  margin: 5vw;
+  padding: 30px;
+  font-size: 1.5rem;
+}
+
+.recipe-box h1,
+.recipe-box h2,
+.recipe-box h3 {
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+  padding-bottom: 0.3rem;
+}
+
+/* Paragraph spacing */
+.recipe-box p {
+  margin: 0.75rem 0;
+}
+
+/* Optional: Style lists */
+.recipe-box ul,
+.recipe-box ol {
+  list-style-image: url('src/assets/chef-claude-icon.png') ;
+  padding-left: 1.5rem;
+  margin: 1rem 0;
+}
+
+/* Optional: Make recipe text easier to read */
+.recipe-box {
+  line-height: 1.6;
 }
